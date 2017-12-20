@@ -1,0 +1,5 @@
+---
+applications:
+ - name: Mappier
+   random-route: true
+   memory: 128M
