@@ -1,28 +1,35 @@
 "use strict";
 
-function init() {
-    let marker;
-    const mapOptions = {
-        center: {lat: 35.686043, lng: 139.750684},
-        zoom: 10
-    }
+(function(mappier) {
+///////////////////////////////////////////////////////////////////////////////
 
-    const map = new google.maps.Map(
-        document.getElementById("map-canvas"), mapOptions
-    );
+mappier.init = function () {
+  const map = L.map('mapid').fitWorld();
 
-    google.maps.event.addListener(
-        map, 'click',
-        (event) => {
-            if (!marker) {
-                marker = new google.maps.Marker({
-                    position: event.latLng,
-                    map: map
-                });
-            }
-            else {
-                marker.setPosition(event.latLng);
-            }
-        }
-    )
-}
+  L.tileLayer(
+    'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    maxZoom: 20,
+    id: 'mapbox.streets',
+    accessToken: "pk.eyJ1IjoiaWt5aGRzdCIsImEiOiJjamM3bXoyN3IxZmR2Mnl0OHZzZWJwNW9tIn0._7_CrTVqam54BfRuz6-17Q"
+  }).addTo(map);
+
+  map.locate({setView: true, maxZoom: 18});
+
+  map.on('locationfound', (e)=>{
+    const radius = e.accuracy / 2;
+    L.marker(e.latlng).addTo(map)
+      .bindPopup(`You are within <strong>${radius}</strong> meters from this point`)
+      .openPopup();
+    L.circle(e.latlng, {
+      radius: radius,
+      color: 'red',
+      fillColor: '#f03',
+      fillOpacity: 0.5
+    }).addTo(map);
+  });
+  map.on('locationerror', (e)=>alert(e.massage) );
+};
+
+///////////////////////////////////////////////////////////////////////////////
+}(window.mappier = window.mappier || {}));
