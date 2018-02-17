@@ -1,7 +1,6 @@
 import datetime
 import os
 import flask
-import myconfig
 #import cf_deployment_tracker
 
 #cf_deployment_tracker.track()
@@ -9,6 +8,7 @@ import myconfig
 port = int(os.getenv('PORT', 8000))
 
 app = flask.Flask(__name__)
+app.config.from_pyfile('config.py')
 
 @app.route("/")
 def home():
@@ -28,5 +28,5 @@ def add_header(response):
     return response
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=port, debug=True)
-    #app.run(port=port, debug=True)
+    #app.run(host='0.0.0.0', port=port, debug=False)
+    app.run(port=port, debug=True)

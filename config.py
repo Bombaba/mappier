@@ -1,1 +1,2 @@
+SEND_FILE_MAX_AGE_DEFAULT = 0
 gmap_key="AIzaSyBUO5fZR-y9dvc1fHBSqw6ZeS5lpIL7SKw"
