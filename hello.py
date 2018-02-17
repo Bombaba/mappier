@@ -22,6 +22,11 @@ def home():
                         expires=expires)
     return response
 
+@app.after_request
+def add_header(response):
+    response.cache_control.no_store = True
+    return response
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=port, debug=True)
     #app.run(port=port, debug=True)
