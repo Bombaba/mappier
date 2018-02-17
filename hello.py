@@ -15,10 +15,10 @@ def home():
     timenow = datetime.datetime.now()
     last_visit = flask.request.cookies.get('last-visit') or timenow
     response = flask.make_response(
-        flask.render_template("index.html")
-    )
+        flask.render_template("index.html"))
     expires = timenow + datetime.timedelta(days=7)
-    response.set_cookie("last-visited", timenow.isoformat(),
+    response.set_cookie("last-visited",
+                        timenow.isoformat(),
                         expires=expires)
     return response
 
