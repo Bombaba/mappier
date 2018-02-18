@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Mappier</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.css" />
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyDmg9hJGYnDl_U3kUpPv-TuyCIvZvFis7c",
+      authDomain: "mappier-0.firebaseapp.com",
+      databaseURL: "https://mappier-0.firebaseio.com",
+      projectId: "mappier-0",
+      storageBucket: "mappier-0.appspot.com",
+      messagingSenderId: "65333600606"
+    };
+    firebase.initializeApp(config);
+  </script>
+  <!-- GeoFire -->
+  <script src="https://cdn.firebase.com/libs/geofire/4.1.2/geofire.min.js"></script>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"
+   integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+   crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"
+   integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw=="
+   crossorigin=""></script>
+
+  <link rel="stylesheet" href="{{url_for('static', filename='css/mappier_style.css')}}" />
+</head>
+<body>
+  <div id="mapid"></div>
+
+  <script src="{{url_for('static', filename='scripts/map.js')}}"></script>
+</body>
