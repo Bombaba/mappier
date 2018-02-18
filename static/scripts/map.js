@@ -64,12 +64,10 @@ geoQuery.on("key_entered", function(key, location, distance){
   const marker = L.marker(location)
     .addTo(map)
     .bindPopup(`<strong>${key}</strong>`)
-  marker.on('dblclick', e => {
-    //marker.remove();
+  marker.on('contextmenu', e => {
     geoFire.remove(key)
       .catch(error => {
         console.log(`Couldn't remove ${key} : ${error}`);
-        //marker.addTo(map);
     });
   });
   markers[key] = marker;

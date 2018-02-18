@@ -12,8 +12,13 @@ app.config.from_pyfile('config.py')
 
 @app.route("/")
 def home():
+    url_root = flask.request.url_root.replace("http://", "https://")
     response = flask.make_response(
-        flask.render_template("auth.html"))
+        flask.render_template(
+            "auth.html",
+            redirect_url=(url_root + "map")
+        )
+    )
     return response
 
 @app.route("/map")
